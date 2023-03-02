@@ -14,12 +14,12 @@ const openai = new OpenAIApi(configuration);
 const app = express()
 app.use(cors())
 
-// app.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-//     next();
-// });
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "https://codex2-rt32.onrender.com/");
@@ -37,6 +37,7 @@ app.get('/', async (req, res) => {
 })
 
 app.post('/', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://codex-xi-brown.vercel.app');
     try {
         const prompt = req.body.prompt;
 
