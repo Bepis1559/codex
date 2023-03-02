@@ -6,15 +6,13 @@ import { Configuration, OpenAIApi } from 'openai'
 dotenv.config()
 
 const configuration = new Configuration({
-    apiKey: process.env.OPEN_API_KEY,
+    apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
-console.log(process.env.OPEN_API_KEY);
 
 const app = express()
-// app.use(express.urlencoded({ extended: true }))
-app.use(cors({ origin: 'http://localhost:5173' }))
+app.use(cors())
 app.use(express.json())
 
 app.get('/', async (req, res) => {
@@ -42,8 +40,7 @@ app.post('/', async (req, res) => {
         });
 
     } catch (error) {
-        console.log(error.stack)
-        // console.error(error)
+        console.error(error)
         res.status(500).send(error || 'Something went wrong');
     }
 })
