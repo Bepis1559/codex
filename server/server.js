@@ -14,7 +14,7 @@ console.log(process.env.OPEN_API_KEY);
 
 const app = express()
 // app.use(express.urlencoded({ extended: true }))
-app.use(cors({ origin: 'https://codex-xi-brown.vercel.app/' }))
+app.use(cors({ origin: 'http://localhost:5173' }))
 app.use(express.json())
 
 app.get('/', async (req, res) => {
